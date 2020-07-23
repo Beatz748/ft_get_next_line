@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kshantel <marvin@21-school.ru>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 23:54:50 by kshantel          #+#    #+#             */
+/*   Updated: 2020/07/23 23:55:16 by kshantel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-void ft_found(char **ptr_n, char **remainder, char **template)
+void	ft_found(char **ptr_n, char **remainder, char **template)
 {
 	**ptr_n = '\0';
 	*template = *remainder;
 	*remainder = ft_strdup(++(*ptr_n));
 	free(*template);
 }
-int	ft_checking(int readed, char *ptr_n)
+
+int		ft_checking(int readed, char *ptr_n)
 {
 	if (readed == -1)
 		return (-1);
@@ -18,7 +31,7 @@ int	ft_checking(int readed, char *ptr_n)
 
 void	ft_alive(char ***line, char **remainder, char **ptr_n)
 {
-	char *template;
+	char	*template;
 
 	if ((*ptr_n = ft_strchr(*remainder, '\n')))
 	{
@@ -40,13 +53,14 @@ void	ft_alive(char ***line, char **remainder, char **ptr_n)
 		free(template);
 	}
 }
-int get_next_line(int fd, char **line)
+
+int		get_next_line(int fd, char **line)
 {
-	char buf[BUFFER_SIZE + 1];
-	int readed;
-	char *ptr_n;
-	char *template;
-	static char *remainder;
+	char		buf[BUFFER_SIZE + 1];
+	int			readed;
+	char		*ptr_n;
+	char		*template;
+	static char	*remainder;
 
 	ptr_n = NULL;
 	readed = 0;
